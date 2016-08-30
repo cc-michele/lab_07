@@ -64,6 +64,9 @@ public abstract class Jogo {
 	public int getMaiorScore() {
 		return this.maiorScore;
 	}
+	public Set<Jogabilidade> getJogabilidades(){
+		return jogabilidades;
+	}
 
 	public void setMaiorScore(int novoScore) {
 		this.maiorScore = novoScore;

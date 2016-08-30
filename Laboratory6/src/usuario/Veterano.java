@@ -46,4 +46,10 @@ public class Veterano extends Usuario {
 		return myString;
 	}
 
+	@Override
+	public void recompensar(String nomeJogo, int scoreObtido, boolean zerou) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

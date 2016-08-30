@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import excecoes.StringInvalidaException;
 import excecoes.ValorInvalidoException;
+import jogo.Jogabilidade;
 import jogo.Jogo;
 
 public class Noob extends Usuario {
@@ -15,13 +16,19 @@ public class Noob extends Usuario {
 	}
 
 	@Override
+	public void recompensar(String nomeJogo, int scoreObtido, boolean zerou) {
+
+
+	}
+
+	@Override
 	public void compraJogo(Jogo jogo) throws Exception {
 		double custo = jogo.getPreco() * DESCONTO_NOOB;
 		if (custo > this.getCredito()) {
 			throw new ValorInvalidoException("Credito insuficiente para realizar a compra.");
 		} else {
-			int parteInteira =(int)( jogo.getPreco() - (jogo.getPreco() % 1));
-			int bonusXp =  parteInteira * 10;
+			int parteInteira = (int) (jogo.getPreco() - (jogo.getPreco() % 1));
+			int bonusXp = parteInteira * 10;
 			setXp2(getXp2() + bonusXp);
 			setCredito(getCredito() - custo);
 			this.cadastraJogo(jogo);

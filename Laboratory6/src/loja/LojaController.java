@@ -13,6 +13,8 @@ import excecoes.StringInvalidaException;
 import excecoes.TipoJogoInvalidoException;
 import excecoes.UpgradeInvalidoException;
 import excecoes.ValorInvalidoException;
+import factory.FactoryDeJogo;
+import factory.FactoryDeUsuario;
 import jogo.Jogabilidade;
 import jogo.Jogo;
 import jogo.Luta;
@@ -58,7 +60,7 @@ public class LojaController {
 	public void registraJogada(String login, String nomeJogo, int score, boolean venceu) {
 		try {
 			Usuario usr = this.buscaUsuario(login);
-			usr.registradaJogada(nomeJogo, score, venceu);
+			usr.recompensar(nomeJogo, score, venceu);
 		} catch (Exception e) {
 			e.getMessage();
 		}

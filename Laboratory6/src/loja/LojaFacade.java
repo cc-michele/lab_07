@@ -22,17 +22,16 @@ public class LojaFacade {
 		return lojaController.vendeJogo(jogoNome, preco, jogabilidades, estiloJogo, loginUser);
 		
 	}
-	/*	
 	
 
-	public String imprimiInforção uma entidade tem um membro seu (atributmacoes(String nomeLogin) throws Exception{
+	public String imprimiInforção() throws Exception{
 		try{
-			loja.imprimiInformacoes(nomeLogin);
+			lojaController.informacaoUsuarios();
 		}catch (Exception e ){
 			System.out.println(e.getMessage());
 		}
 		return null;
-	}*/
-	
+
+	}
 
 }

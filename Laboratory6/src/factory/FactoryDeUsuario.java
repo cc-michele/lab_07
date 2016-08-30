@@ -1,4 +1,4 @@
-package loja;
+package factory;
 
 import excecoes.StringInvalidaException;
 import usuario.Noob;
