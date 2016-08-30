@@ -21,7 +21,7 @@ public class Veterano extends Usuario {
 			throw new ValorInvalidoException("Credito insuficiente para realizar a compra.");
 		} else {
 			int parteInteira =(int)( jogo.getPreco() - (jogo.getPreco() % 1));
-			int bonusXp =  parteInteira * 10;
+			int bonusXp =  parteInteira * 15;
 			setXp2(getXp2() + bonusXp);
 			setCredito(getCredito() - custo);
 			this.cadastraJogo(jogo);

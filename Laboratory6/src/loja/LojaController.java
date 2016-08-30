@@ -10,6 +10,7 @@ import java.util.Set;
 import easyaccept.EasyAccept;
 import excecoes.PrecoInvalidoException;
 import excecoes.StringInvalidaException;
+import excecoes.TipoJogoInvalidoException;
 import excecoes.UpgradeInvalidoException;
 import excecoes.ValorInvalidoException;
 import jogo.Jogabilidade;
@@ -21,36 +22,36 @@ import usuario.Noob;
 import usuario.Usuario;
 import usuario.Veterano;
 
-public class Facade {
+public class LojaController {
 	public static final String FIM_DE_LINHA = System.lineSeparator();
 	private List<Usuario> meusUsuarios;
 	private HashMap<String, Jogabilidade> mapJogabildades;
+	private FactoryDeUsuario factoryUsuario;
+	private FactoryDeJogo factoryJogos;
 
-	public Facade() {
+	public LojaController() {
 		this.meusUsuarios = new ArrayList<Usuario>();
 		this.initializeMap();
+		factoryUsuario = new FactoryDeUsuario();
+		factoryJogos = new FactoryDeJogo();
 	}
 
-	public void adicionaUsuario(String nome, String login) {
-		try {
-			Usuario novoUser = new Noob(nome, login);
-			meusUsuarios.add(novoUser);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-
+	public boolean adicionaUsuario(String nome, String login) throws StringInvalidaException {
+		Usuario novoUsuario = criaUsuario(nome, login);
+		return meusUsuarios.add(novoUsuario);
 	}
 
-	public void vendeJogo(String jogoNome, double preco, String jogabilidades, String estiloJogo, String loginUser) {
+	public boolean vendeJogo(String jogoNome, double preco, String jogabilidades, String estiloJogo, String loginUser) {
 
 		try {
 			Usuario buscado = this.buscaUsuario(loginUser);
 			Set<Jogabilidade> tiposJogabilidades = this.createJogabilidades(jogabilidades);
 			Jogo jogoVendido = this.criaJogo(jogoNome, preco, tiposJogabilidades, estiloJogo);
 			buscado.compraJogo(jogoVendido);
-
+			return true;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+			return false;
 		}
 	}
 
@@ -64,15 +65,17 @@ public class Facade {
 
 	}
 
-	public void adicionaCredito(String login, double credito) {
+	public boolean adicionaCredito(String login, double valor) {
 		try {
-			if (credito < 0) {
+			if (valor < 0) {
 				throw new ValorInvalidoException("Credito nao pode ser negativo");
 			}
 			Usuario user = this.buscaUsuario(login);
-			user.setCredito(user.getCredito() + credito);
+			user.setCredito(user.getCredito() + valor);
+			return true;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+			return false;
 		}
 	}
 
@@ -94,7 +97,7 @@ public class Facade {
 	public void upgrade(String login) throws Exception {
 		Usuario antigo = this.buscaUsuario(login);
 		if (antigo instanceof Veterano) {
-			throw new UpgradeInvalidoException("Impossivel realizar upgrade, quantidade de x2p insuficiente!");
+			throw new UpgradeInvalidoException("Upgrade impossivel de ser realizado, usuario ja eh veterano");
 		} else if (antigo.getXp2() < 1000) {
 			throw new UpgradeInvalidoException("Impossivel realizar upgrade, quantidade de x2p insuficiente!");
 		}
@@ -130,19 +133,14 @@ public class Facade {
 		return buscado.getXp2();
 	}
 
-	private Jogo criaJogo(String jogoNome, double preco, Set<Jogabilidade> tiposJogabilidades, String estiloJogo)
-			throws StringInvalidaException, PrecoInvalidoException {
+	private Usuario criaUsuario(String nome, String login) throws StringInvalidaException {
+		return factoryUsuario.criaUsuario(nome, login);
+	}
 
-		String estilo = estiloJogo.toLowerCase();
-		if (estilo.equals("rpg")) {
-			return new Rpg(jogoNome, preco, tiposJogabilidades);
-		} else if (estilo.equals("plataforma")) {
-			return new Plataforma(jogoNome, preco, tiposJogabilidades);
-		} else if (estilo.equals("luta")) {
-			return new Luta(jogoNome, preco, tiposJogabilidades);
-		} else {
-			return null;
-		}
+	private Jogo criaJogo(String nome, double preco, Set<Jogabilidade> tiposJogabilidades, String estiloJogo)
+			throws StringInvalidaException, PrecoInvalidoException, TipoJogoInvalidoException {
+		return (factoryJogos.criaJogo(nome, preco, tiposJogabilidades, estiloJogo));
+
 	}
 
 	private Set<Jogabilidade> createJogabilidades(String names1) {
@@ -173,7 +171,8 @@ public class Facade {
 	}
 
 	public static void main(String[] args) {
-		args = new String[] { "loja.Facade", "acceptance_test/us1.txt", "acceptance_test/us2.txt",  "acceptance_test/us3.txt" };
+		args = new String[] { "loja.LojaController", "acceptance_test/us1.txt", "acceptance_test/us2.txt",
+				"acceptance_test/us3.txt" };
 		EasyAccept.main(args);
 
 	}
