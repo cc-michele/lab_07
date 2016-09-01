@@ -17,7 +17,26 @@ public class Noob extends Usuario {
 
 	@Override
 	public void recompensar(String nomeJogo, int scoreObtido, boolean zerou) {
-
+		Jogo jogo = buscaJogo(nomeJogo);
+		if (jogo.getJogabilidades().contains(Jogabilidade.OFFLINE)) {
+			setXp2((getXp2() + 30)  + jogo.registraJogada(scoreObtido, zerou)); 
+		}
+		if (jogo.getJogabilidades().contains(Jogabilidade.MULTIPLAYER)) {
+			setXp2( (getXp2() + (10))  + jogo.registraJogada(scoreObtido, zerou));
+		}	
+	}
+	
+	public void punir(String nomeJogo, int scoreObtido, boolean zerou){
+		Jogo jogo = buscaJogo(nomeJogo);
+		if (jogo.getJogabilidades().contains(Jogabilidade.ONLINE)) {
+			setXp2( (getXp2() - 10) + jogo.registraJogada(scoreObtido, zerou)); 
+		}
+		if (jogo.getJogabilidades().contains(Jogabilidade.COMPETITIVO)) {
+			setXp2( (getXp2() - 20) + jogo.registraJogada(scoreObtido, zerou));
+		}
+		if (jogo.getJogabilidades().contains(Jogabilidade.COOPERATIVO)) {
+			setXp2( (getXp2() - 50)  + jogo.registraJogada(scoreObtido, zerou));
+		}
 
 	}
 

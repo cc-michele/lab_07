@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import excecoes.StringInvalidaException;
 import excecoes.ValorInvalidoException;
+import jogo.Jogabilidade;
 import jogo.Jogo;
 
 public class Veterano extends Usuario {
@@ -28,6 +29,29 @@ public class Veterano extends Usuario {
 
 		}
 	}
+	@Override
+	public void recompensar(String nomeJogo, int scoreObtido, boolean zerou) {
+		Jogo jogo = buscaJogo(nomeJogo);
+		if (jogo.getJogabilidades().contains(Jogabilidade.ONLINE)) {
+			setXp2((getXp2() + 10 )  + jogo.registraJogada(scoreObtido, zerou)); 
+		}
+		if (jogo.getJogabilidades().contains(Jogabilidade.COOPERATIVO)) {
+			setXp2((getXp2() + 20) + jogo.registraJogada(scoreObtido, zerou)); 
+		}	
+	}
+	
+	public void punir(String nomeJogo, int scoreObtido, boolean zerou){
+		Jogo jogo = buscaJogo(nomeJogo);
+		if (jogo.getJogabilidades().contains(Jogabilidade.OFFLINE)) {
+			setXp2((getXp2() - 20)  + jogo.registraJogada(scoreObtido, zerou)); 
+		}
+		if (jogo.getJogabilidades().contains(Jogabilidade.COMPETITIVO)) {
+			setXp2((getXp2() - 20)  + jogo.registraJogada(scoreObtido, zerou)); 
+		}
+
+	}
+
+	
 
 	@Override
 	public String toString() {
@@ -44,12 +68,6 @@ public class Veterano extends Usuario {
 		myString += "Total de pre�o dos jogos: R$ " + this.calculaPrecoTotal() + FIM_DE_LINHA;
 		myString += "--------------------------------------------";
 		return myString;
-	}
-
-	@Override
-	public void recompensar(String nomeJogo, int scoreObtido, boolean zerou) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
