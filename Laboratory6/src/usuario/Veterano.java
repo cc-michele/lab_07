@@ -1,9 +1,5 @@
 package usuario;
 
-import java.util.Iterator;
-
-import excecoes.StringInvalidaException;
-import excecoes.ValorInvalidoException;
 import jogo.Jogabilidade;
 import jogo.Jogo;
 

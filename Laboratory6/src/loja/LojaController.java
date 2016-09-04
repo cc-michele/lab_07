@@ -17,12 +17,8 @@ import factory.FactoryDeJogo;
 import factory.FactoryDeUsuario;
 import jogo.Jogabilidade;
 import jogo.Jogo;
-import jogo.Luta;
-import jogo.Plataforma;
-import jogo.Rpg;
-import usuario.Noob;
 import usuario.Usuario;
-import usuario.Veterano;
+
 
 public class LojaController {
 	public static final String FIM_DE_LINHA = System.lineSeparator();
@@ -96,7 +92,8 @@ public class LojaController {
 		return buscado;
 	}
 
-	public void upgrade(String login) throws Exception {
+	public void upgrade(String login) throws UpgradeInvalidoException {
+		
 		Usuario buscado = this.buscaUsuario(login);
 		buscado.upgrade();
 
@@ -122,7 +119,7 @@ public class LojaController {
 
 	public int getX2p(String login) {
 		Usuario buscado = this.buscaUsuario(login);
-		return buscado.getXp2();
+		return buscado.getX2p();
 	}
 
 	private Usuario criaUsuario(String nome, String login) throws StringInvalidaException {

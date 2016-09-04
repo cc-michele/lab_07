@@ -7,7 +7,6 @@ import java.util.Set;
 import excecoes.StringInvalidaException;
 import excecoes.UpgradeInvalidoException;
 import excecoes.ValorInvalidoException;
-import jogo.Jogabilidade;
 import jogo.Jogo;
 
 public class Usuario {
@@ -42,7 +41,9 @@ public class Usuario {
 		if (custo > this.getCredito()) {
 			throw new ValorInvalidoException("Credito insuficiente para realizar a compra.");
 		} else {
-			setX2p(getXp2() + statusDoUsuario.calculaX2P(jogo));
+			int bonusX2p = statusDoUsuario.calculaX2P(jogo);
+			//verificaStatus(bonusX2p);
+			setX2p(getX2p() + bonusX2p);
 			setCredito(getCredito() - custo);
 			this.cadastraJogo(jogo);
 
@@ -50,19 +51,29 @@ public class Usuario {
 
 	}
 
-	public TipoDeUsuarioIF getStatusDoUsuario() {
-		return statusDoUsuario;
-	}
 
 	public void setStatusDoUsuario(TipoDeUsuarioIF statusDoUsuario) {
 		this.statusDoUsuario = statusDoUsuario;
 	}
+	
+	/*public void verificaStatus(int bonusX2p) throws UpgradeInvalidoException{
+		if ((getClass().equals(Noob.class)) && (getX2p() + bonusX2p >= 1000)){
+			upgrade();
+		} else if ((getClass().equals(Veterano.class)) && (getX2p() + bonusX2p < 1000)){
+			downgrade();
+		}
+	}*/
 
-	public void setX2p(int novoValor) {
+	public void setX2p(int novoValor) throws UpgradeInvalidoException {
 		this.x2p = novoValor;
+		if ((getClass().equals(Noob.class)) && (getX2p() >= 1000)){
+			upgrade();
+		} else if ((getClass().equals(Veterano.class)) && (getX2p()  < 1000)){
+			downgrade();
+		}
 	}
 
-	public int getXp2() {
+	public int getX2p() {
 		return this.x2p;
 	}
 
@@ -102,23 +113,18 @@ public class Usuario {
 		this.meusJogos = meusJogos;
 	}
 
-	/*
-	 * public void registradaJogada(String nomeJogo, int score, boolean venceu)
-	 * throws Exception { Jogo jogo = this.buscaJogo(nomeJogo); if (jogo ==
-	 * null) { throw new Exception(); } setXp2(getXp2() +
-	 * jogo.registraJogada(score, venceu)); }
-	 */
 
-	public void recompensar(String nomeJogo, int scoreObtido, boolean zerou) {
+	public void recompensar(String nomeJogo, int scoreObtido, boolean zerou) throws UpgradeInvalidoException {
 		Jogo jogo = this.buscaJogo(nomeJogo);
-		int x2p = getXp2() + (statusDoUsuario.calculaX2P(jogo)) + jogo.registraJogada(scoreObtido, zerou);
-		setX2p(x2p);
+		int bonusX2p = (statusDoUsuario.recompensar(jogo)) + jogo.registraJogada(scoreObtido, zerou);
+		//verificaStatus(bonusX2p);
+		setX2p(getX2p() + bonusX2p);
 	}
 
 	public void punir(String nomeJogo, int scoreObtido, boolean zerou) {
 		Jogo jogo = this.buscaJogo(nomeJogo);
-		int x2p = getXp2() + (statusDoUsuario.punir(jogo) + jogo.registraJogada(scoreObtido, zerou));
-		setX2p(x2p);
+		int bonusX2p = (statusDoUsuario.punir(jogo) + jogo.registraJogada(scoreObtido, zerou));
+		//setX2p(getX2p()+ bonusX2p);
 	}
 
 	public Jogo buscaJogo(String nomeJogo) {
@@ -142,26 +148,40 @@ public class Usuario {
 		}
 		return total;
 	}
+	
+	public void upgrade() throws UpgradeInvalidoException {
+		
+		if (statusDoUsuario.getClass() == Veterano.class) {
+			throw new UpgradeInvalidoException("Upgrade impossivel de ser realizado, usuario ja eh veterano");
+		} else if (getX2p() < 1000) {
+			throw new UpgradeInvalidoException("Impossivel realizar upgrade, quantidade de x2p insuficiente!");
+		}
+		setStatusDoUsuario(new Veterano());
+
+	}
+	
+	public void downgrade() throws UpgradeInvalidoException {
+		
+		if (statusDoUsuario.getClass() == Noob.class) {
+			throw new UpgradeInvalidoException("Downgrade impossivel de ser realizado, usuario ja eh Noob");
+		} else if (getX2p() > 1000) {
+			throw new UpgradeInvalidoException("Impossivel realizar downgrade, quantidade de x2p maior que 1000!");
+		}
+		setStatusDoUsuario(new Noob());
+
+	}
+
 
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Usuario) {
 			Usuario temp = (Usuario) obj;
-			return this.getNome().equals(temp.getNome()) && this.getLogin().equals(temp.getLogin()) && this.getStatusDoUsuario().equals(temp.getStatusDoUsuario());
+			return this.getNome().equals(temp.getNome()) && this.getLogin().equals(temp.getLogin());
 		} else {
 			return false;
 		}
 	}
 
 	
-	public void upgrade() throws UpgradeInvalidoException {
-		
-		if (statusDoUsuario.getClass() == Veterano.class) {
-			throw new UpgradeInvalidoException("Upgrade impossivel de ser realizado, usuario ja eh veterano");
-		} else if (getXp2() < 1000) {
-			throw new UpgradeInvalidoException("Impossivel realizar upgrade, quantidade de x2p insuficiente!");
-		}
-		setStatusDoUsuario(new Veterano());
 
-	}
 }
