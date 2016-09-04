@@ -5,9 +5,12 @@ import java.util.Iterator;
 import java.util.Set;
 
 import excecoes.StringInvalidaException;
+import excecoes.UpgradeInvalidoException;
+import excecoes.ValorInvalidoException;
+import jogo.Jogabilidade;
 import jogo.Jogo;
 
-public abstract class Usuario {
+public class Usuario {
 
 	public static final String FIM_DE_LINHA = System.lineSeparator();
 
@@ -15,7 +18,8 @@ public abstract class Usuario {
 	private String login;
 	private Set<Jogo> meusJogos;
 	private double credito;
-	private int xp2;
+	private int x2p;
+	private TipoDeUsuarioIF statusDoUsuario;
 
 	public Usuario(String nome, String login) throws StringInvalidaException {
 
@@ -30,16 +34,36 @@ public abstract class Usuario {
 		this.login = login;
 		meusJogos = new HashSet<Jogo>();
 		this.credito = 0;
+		this.statusDoUsuario = new Noob();
 	}
 
-	public abstract void compraJogo(Jogo jogo) throws Exception;
+	public void compraJogo(Jogo jogo) throws Exception {
+		double custo = statusDoUsuario.calculaDesconto(jogo);
+		if (custo > this.getCredito()) {
+			throw new ValorInvalidoException("Credito insuficiente para realizar a compra.");
+		} else {
+			setX2p(getXp2() + statusDoUsuario.calculaX2P(jogo));
+			setCredito(getCredito() - custo);
+			this.cadastraJogo(jogo);
 
-	public void setXp2(int novoValor) {
-		this.xp2 = novoValor;
+		}
+
+	}
+
+	public TipoDeUsuarioIF getStatusDoUsuario() {
+		return statusDoUsuario;
+	}
+
+	public void setStatusDoUsuario(TipoDeUsuarioIF statusDoUsuario) {
+		this.statusDoUsuario = statusDoUsuario;
+	}
+
+	public void setX2p(int novoValor) {
+		this.x2p = novoValor;
 	}
 
 	public int getXp2() {
-		return this.xp2;
+		return this.x2p;
 	}
 
 	public void cadastraJogo(Jogo jogo) {
@@ -70,6 +94,14 @@ public abstract class Usuario {
 		return this.credito;
 	}
 
+	public Set<Jogo> getMeusJogos() {
+		return meusJogos;
+	}
+
+	public void setMeusJogos(Set<Jogo> meusJogos) {
+		this.meusJogos = meusJogos;
+	}
+
 	/*
 	 * public void registradaJogada(String nomeJogo, int score, boolean venceu)
 	 * throws Exception { Jogo jogo = this.buscaJogo(nomeJogo); if (jogo ==
@@ -77,9 +109,17 @@ public abstract class Usuario {
 	 * jogo.registraJogada(score, venceu)); }
 	 */
 
-	public abstract void recompensar(String nomeJogo, int scoreObtido, boolean zerou);
+	public void recompensar(String nomeJogo, int scoreObtido, boolean zerou) {
+		Jogo jogo = this.buscaJogo(nomeJogo);
+		int x2p = getXp2() + (statusDoUsuario.calculaX2P(jogo)) + jogo.registraJogada(scoreObtido, zerou);
+		setX2p(x2p);
+	}
 
-	public abstract void punir(String nomeJogo, int scoreObtido, boolean zerou);
+	public void punir(String nomeJogo, int scoreObtido, boolean zerou) {
+		Jogo jogo = this.buscaJogo(nomeJogo);
+		int x2p = getXp2() + (statusDoUsuario.punir(jogo) + jogo.registraJogada(scoreObtido, zerou));
+		setX2p(x2p);
+	}
 
 	public Jogo buscaJogo(String nomeJogo) {
 		Jogo buscado = null;
@@ -91,14 +131,6 @@ public abstract class Usuario {
 			}
 		}
 		return buscado;
-	}
-
-	public Set<Jogo> getMeusJogos() {
-		return meusJogos;
-	}
-
-	public void setMeusJogos(Set<Jogo> meusJogos) {
-		this.meusJogos = meusJogos;
 	}
 
 	public double calculaPrecoTotal() {
@@ -115,9 +147,21 @@ public abstract class Usuario {
 	public boolean equals(Object obj) {
 		if (obj instanceof Usuario) {
 			Usuario temp = (Usuario) obj;
-			return this.getNome().equals(temp.getNome()) && this.getLogin().equals(temp.getLogin());
+			return this.getNome().equals(temp.getNome()) && this.getLogin().equals(temp.getLogin()) && this.getStatusDoUsuario().equals(temp.getStatusDoUsuario());
 		} else {
 			return false;
 		}
+	}
+
+	
+	public void upgrade() throws UpgradeInvalidoException {
+		
+		if (statusDoUsuario.getClass() == Veterano.class) {
+			throw new UpgradeInvalidoException("Upgrade impossivel de ser realizado, usuario ja eh veterano");
+		} else if (getXp2() < 1000) {
+			throw new UpgradeInvalidoException("Impossivel realizar upgrade, quantidade de x2p insuficiente!");
+		}
+		setStatusDoUsuario(new Veterano());
+
 	}
 }

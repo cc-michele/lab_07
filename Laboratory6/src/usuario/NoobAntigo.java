@@ -6,36 +6,37 @@ import excecoes.StringInvalidaException;
 import excecoes.ValorInvalidoException;
 import jogo.Jogabilidade;
 import jogo.Jogo;
+import usuario.Usuario;
 
-public class Noob extends Usuario {
+public class NoobAntigo extends Usuario {
 	public static final double DESCONTO_NOOB = 0.9;
 
-	public Noob(String nome, String login) throws StringInvalidaException {
+	public NoobAntigo(String nome, String login) throws StringInvalidaException {
 		super(nome, login);
-		setXp2(0);
+		setX2p(0);
 	}
 
 	@Override
 	public void recompensar(String nomeJogo, int scoreObtido, boolean zerou) {
-		Jogo jogo = buscaJogo(nomeJogo);
+		Jogo jogo = this.buscaJogo(nomeJogo);
 		if (jogo.getJogabilidades().contains(Jogabilidade.OFFLINE)) {
-			setXp2((getXp2() + 30)  + jogo.registraJogada(scoreObtido, zerou)); 
+			setX2p((getXp2() + 30)  + jogo.registraJogada(scoreObtido, zerou)); 
 		}
 		if (jogo.getJogabilidades().contains(Jogabilidade.MULTIPLAYER)) {
-			setXp2( (getXp2() + (10))  + jogo.registraJogada(scoreObtido, zerou));
+			setX2p( (getXp2() + (10))  + jogo.registraJogada(scoreObtido, zerou));
 		}	
 	}
 	
 	public void punir(String nomeJogo, int scoreObtido, boolean zerou){
 		Jogo jogo = buscaJogo(nomeJogo);
 		if (jogo.getJogabilidades().contains(Jogabilidade.ONLINE)) {
-			setXp2( (getXp2() - 10) + jogo.registraJogada(scoreObtido, zerou)); 
+			setX2p( (getXp2() - 10) + jogo.registraJogada(scoreObtido, zerou)); 
 		}
 		if (jogo.getJogabilidades().contains(Jogabilidade.COMPETITIVO)) {
-			setXp2( (getXp2() - 20) + jogo.registraJogada(scoreObtido, zerou));
+			setX2p( (getXp2() - 20) + jogo.registraJogada(scoreObtido, zerou));
 		}
 		if (jogo.getJogabilidades().contains(Jogabilidade.COOPERATIVO)) {
-			setXp2( (getXp2() - 50)  + jogo.registraJogada(scoreObtido, zerou));
+			setX2p( (getXp2() - 50)  + jogo.registraJogada(scoreObtido, zerou));
 		}
 
 	}
@@ -48,7 +49,7 @@ public class Noob extends Usuario {
 		} else {
 			int parteInteira = (int) (jogo.getPreco() - (jogo.getPreco() % 1));
 			int bonusXp = parteInteira * 10;
-			setXp2(getXp2() + bonusXp);
+			setX2p(getXp2() + bonusXp);
 			setCredito(getCredito() - custo);
 			this.cadastraJogo(jogo);
 

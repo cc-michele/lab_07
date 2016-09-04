@@ -7,7 +7,7 @@ import usuario.Usuario;
 public class FactoryDeUsuario {
 
 	public Usuario criaUsuario(String nome, String login) throws StringInvalidaException {
-		Usuario novoUsuario = new Noob(nome, login);
+		Usuario novoUsuario = new Usuario(nome, login);
 		return novoUsuario;
 
 	}

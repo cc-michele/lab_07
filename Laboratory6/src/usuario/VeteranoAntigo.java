@@ -7,12 +7,12 @@ import excecoes.ValorInvalidoException;
 import jogo.Jogabilidade;
 import jogo.Jogo;
 
-public class Veterano extends Usuario {
+public class VeteranoAntigo extends Usuario {
 	public static final double DESCONTO_VETERANO = 0.8;
 
-	public Veterano(String nome, String login) throws StringInvalidaException {
+	public VeteranoAntigo(String nome, String login) throws StringInvalidaException {
 		super(nome, login);
-		setXp2(1000);
+		setX2p(1000);
 	}
 
 	@Override
@@ -23,7 +23,7 @@ public class Veterano extends Usuario {
 		} else {
 			int parteInteira =(int)( jogo.getPreco() - (jogo.getPreco() % 1));
 			int bonusXp =  parteInteira * 15;
-			setXp2(getXp2() + bonusXp);
+			setX2p(getXp2() + bonusXp);
 			setCredito(getCredito() - custo);
 			this.cadastraJogo(jogo);
 
@@ -33,20 +33,20 @@ public class Veterano extends Usuario {
 	public void recompensar(String nomeJogo, int scoreObtido, boolean zerou) {
 		Jogo jogo = buscaJogo(nomeJogo);
 		if (jogo.getJogabilidades().contains(Jogabilidade.ONLINE)) {
-			setXp2((getXp2() + 10 )  + jogo.registraJogada(scoreObtido, zerou)); 
+			setX2p((getXp2() + 10 )  + jogo.registraJogada(scoreObtido, zerou)); 
 		}
 		if (jogo.getJogabilidades().contains(Jogabilidade.COOPERATIVO)) {
-			setXp2((getXp2() + 20) + jogo.registraJogada(scoreObtido, zerou)); 
+			setX2p((getXp2() + 20) + jogo.registraJogada(scoreObtido, zerou)); 
 		}	
 	}
 	
 	public void punir(String nomeJogo, int scoreObtido, boolean zerou){
 		Jogo jogo = buscaJogo(nomeJogo);
 		if (jogo.getJogabilidades().contains(Jogabilidade.OFFLINE)) {
-			setXp2((getXp2() - 20)  + jogo.registraJogada(scoreObtido, zerou)); 
+			setX2p((getXp2() - 20)  + jogo.registraJogada(scoreObtido, zerou)); 
 		}
 		if (jogo.getJogabilidades().contains(Jogabilidade.COMPETITIVO)) {
-			setXp2((getXp2() - 20)  + jogo.registraJogada(scoreObtido, zerou)); 
+			setX2p((getXp2() - 20)  + jogo.registraJogada(scoreObtido, zerou)); 
 		}
 
 	}
