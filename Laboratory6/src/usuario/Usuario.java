@@ -37,38 +37,26 @@ public class Usuario {
 	}
 
 	public void compraJogo(Jogo jogo) throws Exception {
-		double custo = statusDoUsuario.calculaDesconto(jogo);
+		double custo = statusDoUsuario.calculaDesconto(jogo); // Chamada polimorfica
 		if (custo > this.getCredito()) {
 			throw new ValorInvalidoException("Credito insuficiente para realizar a compra.");
 		} else {
-			int bonusX2p = statusDoUsuario.calculaX2P(jogo);
-			//verificaStatus(bonusX2p);
+			int bonusX2p = statusDoUsuario.calculaX2P(jogo); // Chamada polimorfica
 			setX2p(getX2p() + bonusX2p);
 			setCredito(getCredito() - custo);
 			this.cadastraJogo(jogo);
-
 		}
-
 	}
-
 
 	public void setStatusDoUsuario(TipoDeUsuarioIF statusDoUsuario) {
 		this.statusDoUsuario = statusDoUsuario;
 	}
-	
-	/*public void verificaStatus(int bonusX2p) throws UpgradeInvalidoException{
-		if ((getClass().equals(Noob.class)) && (getX2p() + bonusX2p >= 1000)){
-			upgrade();
-		} else if ((getClass().equals(Veterano.class)) && (getX2p() + bonusX2p < 1000)){
-			downgrade();
-		}
-	}*/
 
 	public void setX2p(int novoValor) throws UpgradeInvalidoException {
 		this.x2p = novoValor;
-		if ((getClass().equals(Noob.class)) && (getX2p() >= 1000)){
+		if ((getClass().equals(Noob.class)) && (getX2p() >= 1000)) {
 			upgrade();
-		} else if ((getClass().equals(Veterano.class)) && (getX2p()  < 1000)){
+		} else if ((getClass().equals(Veterano.class)) && (getX2p() < 1000)) {
 			downgrade();
 		}
 	}
@@ -113,18 +101,16 @@ public class Usuario {
 		this.meusJogos = meusJogos;
 	}
 
-
 	public void recompensar(String nomeJogo, int scoreObtido, boolean zerou) throws UpgradeInvalidoException {
 		Jogo jogo = this.buscaJogo(nomeJogo);
-		int bonusX2p = (statusDoUsuario.recompensar(jogo)) + jogo.registraJogada(scoreObtido, zerou);
-		//verificaStatus(bonusX2p);
+		int bonusX2p = (statusDoUsuario.recompensar(jogo)) + jogo.registraJogada(scoreObtido, zerou);// Chamada polimorfica
 		setX2p(getX2p() + bonusX2p);
 	}
 
-	public void punir(String nomeJogo, int scoreObtido, boolean zerou) {
+	public void punir(String nomeJogo, int scoreObtido, boolean zerou) throws UpgradeInvalidoException {
 		Jogo jogo = this.buscaJogo(nomeJogo);
-		int bonusX2p = (statusDoUsuario.punir(jogo) + jogo.registraJogada(scoreObtido, zerou));
-		//setX2p(getX2p()+ bonusX2p);
+		int bonusX2p = (statusDoUsuario.punir(jogo) + jogo.registraJogada(scoreObtido, zerou));// Chamada polimorfica
+		setX2p(getX2p()+ bonusX2p);
 	}
 
 	public Jogo buscaJogo(String nomeJogo) {
@@ -148,9 +134,9 @@ public class Usuario {
 		}
 		return total;
 	}
-	
+
 	public void upgrade() throws UpgradeInvalidoException {
-		
+
 		if (statusDoUsuario.getClass() == Veterano.class) {
 			throw new UpgradeInvalidoException("Upgrade impossivel de ser realizado, usuario ja eh veterano");
 		} else if (getX2p() < 1000) {
@@ -159,9 +145,9 @@ public class Usuario {
 		setStatusDoUsuario(new Veterano());
 
 	}
-	
+
 	public void downgrade() throws UpgradeInvalidoException {
-		
+
 		if (statusDoUsuario.getClass() == Noob.class) {
 			throw new UpgradeInvalidoException("Downgrade impossivel de ser realizado, usuario ja eh Noob");
 		} else if (getX2p() > 1000) {
@@ -170,7 +156,6 @@ public class Usuario {
 		setStatusDoUsuario(new Noob());
 
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -181,7 +166,5 @@ public class Usuario {
 			return false;
 		}
 	}
-
-	
 
 }

@@ -39,42 +39,51 @@ public class LojaController {
 		return meusUsuarios.add(novoUsuario);
 	}
 
-	public boolean vendeJogo(String jogoNome, double preco, String jogabilidades, String estiloJogo, String loginUser) {
+	public void vendeJogo(String jogoNome, double preco, String jogabilidades, String estiloJogo, String loginUser) {
 
 		try {
 			Usuario buscado = this.buscaUsuario(loginUser);
 			Set<Jogabilidade> tiposJogabilidades = this.createJogabilidades(jogabilidades);
 			Jogo jogoVendido = this.criaJogo(jogoNome, preco, tiposJogabilidades, estiloJogo);
-			buscado.compraJogo(jogoVendido);
-			return true;
+			buscado.compraJogo(jogoVendido); // Chamada polimorfica
+			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			return false;
+			
 		}
 	}
 
 	public void registraJogada(String login, String nomeJogo, int score, boolean venceu) {
 		try {
 			Usuario usr = this.buscaUsuario(login);
-			usr.recompensar(nomeJogo, score, venceu);
+			usr.recompensar(nomeJogo, score, venceu); // Chamada polimorfica
 		} catch (Exception e) {
 			e.getMessage();
 		}
 
 	}
 
-	public boolean adicionaCredito(String login, double valor) {
+	public void adicionaCredito(String login, double valor) {
 		try {
 			if (valor < 0) {
 				throw new ValorInvalidoException("Credito nao pode ser negativo");
 			}
 			Usuario user = this.buscaUsuario(login);
 			user.setCredito(user.getCredito() + valor);
-			return true;
+			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			return false;
+			
 		}
+	}
+	public double confereCredito(String login) {
+		try {
+			Usuario procurado = this.buscaUsuario(login);
+			return procurado.getCredito();
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return 0;
 	}
 
 	public Usuario buscaUsuario(String login) {
@@ -99,15 +108,7 @@ public class LojaController {
 
 	}
 
-	public double confereCredito(String login) {
-		try {
-			Usuario procurado = this.buscaUsuario(login);
-			return procurado.getCredito();
-		} catch (Exception e) {
-			e.getMessage();
-		}
-		return 0;
-	}
+
 
 	public String informacaoUsuarios() {
 		String myString = "=== Central P2-CG ===" + FIM_DE_LINHA + FIM_DE_LINHA;
@@ -156,13 +157,6 @@ public class LojaController {
 		mapJogabildades.put("COMPETITIVO", Jogabilidade.COMPETITIVO);
 		mapJogabildades.put("COOPERATIVO", Jogabilidade.COOPERATIVO);
 		mapJogabildades.put("MULTIPLAYER", Jogabilidade.MULTIPLAYER);
-
-	}
-
-	public static void main(String[] args) {
-		args = new String[] { "loja.LojaController", "acceptance_test/us1.txt", "acceptance_test/us2.txt",
-				"acceptance_test/us3.txt" };
-		EasyAccept.main(args);
 
 	}
 
