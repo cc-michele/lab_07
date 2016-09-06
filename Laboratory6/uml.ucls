@@ -1,265 +1,207 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.10" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="excecoes.TipoJogoInvalidoException" project="Laboratory6" 
-    file="/Laboratory6/src/excecoes/TipoJogoInvalidoException.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="97" width="188" x="-17" y="63"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="2" language="java" name="excecoes.ValorInvalidoException" project="Laboratory6" 
-    file="/Laboratory6/src/excecoes/ValorInvalidoException.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="97" width="168" x="1214" y="254"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="3" language="java" name="loja.LojaController" project="Laboratory6" 
+  <class id="1" language="java" name="loja.LojaController" project="Laboratory6" 
     file="/Laboratory6/src/loja/LojaController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="349" width="284" x="484" y="254"/>    
+    <position height="331" width="284" x="50" y="246"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="loja.LojaFacade" project="Laboratory6" 
+  <class id="2" language="java" name="loja.LojaFacade" project="Laboratory6" 
     file="/Laboratory6/src/loja/LojaFacade.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="151" width="283" x="679" y="63"/>    
+    <position height="259" width="264" x="50" y="-53"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="excecoes.TipoUsuarioInvalidoException" project="Laboratory6" 
-    file="/Laboratory6/src/excecoes/TipoUsuarioInvalidoException.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="97" width="202" x="211" y="63"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <enumeration id="6" language="java" name="jogo.Jogabilidade" project="Laboratory6" 
+  <enumeration id="3" language="java" name="jogo.Jogabilidade" project="Laboratory6" 
     file="/Laboratory6/src/jogo/Jogabilidade.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="169" width="168" x="444" y="1673"/>    
+    <position height="169" width="168" x="50" y="1647"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="7" language="java" name="jogo.Jogo" project="Laboratory6" file="/Laboratory6/src/jogo/Jogo.java" 
+  <class id="4" language="java" name="jogo.Jogo" project="Laboratory6" file="/Laboratory6/src/jogo/Jogo.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="421" width="210" x="711" y="1212"/>    
+    <position height="421" width="210" x="317" y="1186"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="8" language="java" name="usuario.TipoDeUsuarioIF" project="Laboratory6" 
+  <interface id="5" language="java" name="usuario.TipoDeUsuarioIF" project="Laboratory6" 
     file="/Laboratory6/src/usuario/TipoDeUsuarioIF.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="133" width="169" x="984" y="1212"/>    
+    <position height="133" width="169" x="590" y="1186"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="9" language="java" name="factory.FactoryDeJogo" project="Laboratory6" 
+  <class id="6" language="java" name="factory.FactoryDeJogo" project="Laboratory6" 
     file="/Laboratory6/src/factory/FactoryDeJogo.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="97" width="284" x="139" y="643"/>    
+    <position height="97" width="284" x="-255" y="617"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="excecoes.UpgradeInvalidoException" project="Laboratory6" 
-    file="/Laboratory6/src/excecoes/UpgradeInvalidoException.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="97" width="186" x="453" y="63"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="11" language="java" name="jogo.Luta" project="Laboratory6" file="/Laboratory6/src/jogo/Luta.java" 
+  <class id="7" language="java" name="jogo.Luta" project="Laboratory6" file="/Laboratory6/src/jogo/Luta.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="133" width="208" x="652" y="1673"/>    
+    <position height="133" width="208" x="258" y="1647"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="jogo.Plataforma" project="Laboratory6" 
+  <class id="8" language="java" name="jogo.Plataforma" project="Laboratory6" 
     file="/Laboratory6/src/jogo/Plataforma.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="169" width="239" x="900" y="1673"/>    
+    <position height="169" width="239" x="506" y="1647"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="excecoes.PrecoInvalidoException" project="Laboratory6" 
-    file="/Laboratory6/src/excecoes/PrecoInvalidoException.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="97" width="172" x="1214" y="63"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="14" language="java" name="usuario.Noob" project="Laboratory6" file="/Laboratory6/src/usuario/Noob.java" 
+  <class id="9" language="java" name="usuario.Noob" project="Laboratory6" file="/Laboratory6/src/usuario/Noob.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="187" width="169" x="984" y="643"/>    
+    <position height="187" width="169" x="590" y="617"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="usuario.Usuario" project="Laboratory6" 
+  <class id="10" language="java" name="usuario.Usuario" project="Laboratory6" 
     file="/Laboratory6/src/usuario/Usuario.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="529" width="233" x="711" y="643"/>    
+    <position height="529" width="233" x="317" y="617"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="excecoes.StringInvalidaException" project="Laboratory6" 
-    file="/Laboratory6/src/excecoes/StringInvalidaException.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="97" width="172" x="1002" y="63"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="17" language="java" name="jogo.Rpg" project="Laboratory6" file="/Laboratory6/src/jogo/Rpg.java" 
+  <class id="11" language="java" name="jogo.Rpg" project="Laboratory6" file="/Laboratory6/src/jogo/Rpg.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="151" width="207" x="1179" y="1673"/>    
+    <position height="151" width="207" x="785" y="1647"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="18" language="java" name="usuario.Veterano" project="Laboratory6" 
+  <class id="12" language="java" name="usuario.Veterano" project="Laboratory6" 
     file="/Laboratory6/src/usuario/Veterano.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="187" width="190" x="1193" y="643"/>    
+    <position height="187" width="190" x="799" y="617"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="19" language="java" name="factory.FactoryDeUsuario" project="Laboratory6" 
+  <class id="13" language="java" name="factory.FactoryDeUsuario" project="Laboratory6" 
     file="/Laboratory6/src/factory/FactoryDeUsuario.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="97" width="187" x="484" y="643"/>    
+    <position height="97" width="187" x="90" y="617"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <realization id="20">    
-    <end type="SOURCE" refId="18"/>    
-    <end type="TARGET" refId="8"/>  
-  </realization>  
-  <generalization id="21">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="7"/>  
-  </generalization>  
-  <association id="22">    
-    <end type="SOURCE" refId="15" navigable="false">      
-      <attribute id="23" name="statusDoUsuario"/>      
-      <multiplicity id="24" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="25">    
+  <association id="14">    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="26" name="lojaController"/>      
-      <multiplicity id="27" minimum="0" maximum="1"/>    
+      <attribute id="15" name="jogabilidades"/>      
+      <multiplicity id="16" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="28">    
-    <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="7"/>  
-  </generalization>  
-  <association id="29">    
-    <bendpoint x="453" y="643"/>    
-    <bendpoint x="453" y="1212"/>    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="30" name="mapJogabildades"/>      
-      <multiplicity id="31" minimum="0" maximum="2147483647"/>    
+  <association id="17">    
+    <bendpoint x="59" y="617"/>    
+    <bendpoint x="59" y="1186"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="18" name="mapJogabildades"/>      
+      <multiplicity id="19" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="20">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="21" name="lojaController"/>      
+      <multiplicity id="22" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="23">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="24" name="factoryJogos"/>      
+      <multiplicity id="25" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="32">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="33" name="jogabilidades"/>      
-      <multiplicity id="34" minimum="0" maximum="2147483647"/>    
+  <association id="26">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="27" name="statusDoUsuario"/>      
+      <multiplicity id="28" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="35">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="36" name="meusUsuarios"/>      
-      <multiplicity id="37" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="38">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="39" name="factoryUsuario"/>      
-      <multiplicity id="40" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="41">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="7"/>  
+  <generalization id="29">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="4"/>  
   </generalization>  
-  <association id="42">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="43" name="factoryJogos"/>      
-      <multiplicity id="44" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="45">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="13"/>  
-  </generalization>  
-  <realization id="46">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="8"/>  
+  <realization id="30">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="5"/>  
   </realization>  
-  <association id="47">    
-    <end type="SOURCE" refId="15" navigable="false">      
-      <attribute id="48" name="meusJogos"/>      
-      <multiplicity id="49" minimum="0" maximum="2147483647"/>    
+  <association id="31">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="32" name="meusUsuarios"/>      
+      <multiplicity id="33" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="34">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <generalization id="35">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <association id="36">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="37" name="meusJogos"/>      
+      <multiplicity id="38" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="39">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <association id="40">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="41" name="factoryUsuario"/>      
+      <multiplicity id="42" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
