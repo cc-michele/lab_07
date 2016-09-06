@@ -1,3 +1,4 @@
+/* 115111882 - Michele Santos Memoria: LAB 7 - Turma 3 */
 package factory;
 
 import excecoes.StringInvalidaException;

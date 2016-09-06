@@ -1,3 +1,4 @@
+/* 115111882 - Michele Santos Memoria: LAB 7 - Turma 3 */
 package loja;
 
 import static org.junit.Assert.*;
@@ -6,19 +7,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import excecoes.StringInvalidaException;
-import excecoes.UpgradeInvalidoException;
 import jogo.Jogo;
-import jogo.Plataforma;
-import junit.framework.Assert;
-import usuario.Noob;
 import usuario.Usuario;
 
 public class LojaControllerTest {
 
-	private Jogo meuJogo;
+
 	private String nomeJogo = "Mario Kart";
 	private double precoJogo = 30.00;
-	private Usuario meuUsuario;
 	private String nomeUsuario = "Alice";
 	private String login = "alice.s";
 	private double credito = 100;
